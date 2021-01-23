@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  <label for="posts">ID de post:</label>
+
+    <select onchange="window.location = this.options[this.selectedIndex].value;">
+      <option>Elija uno</option>
+      {% for post_id in posts_by_id %}
+        <option
+                value="/members_only/{{ post_id }}"
+                {% if post_id == post["id"] %}
+                  selected="selected"
+                {% endif %}>
+          {{ post_id }}
+      </option>
+      {% endfor %}
+    </select>
+
+    {% if post %}
+      <h2 class="subtitle">{{ post['title'] }}</h2>
+      <p>{{ post['body'] }}</p>
+    {% endif %}
+</h1>
+{% endblock %}
